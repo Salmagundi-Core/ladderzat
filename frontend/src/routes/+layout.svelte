@@ -2,7 +2,6 @@
 <script lang="js">
     import { invalidate } from '$app/navigation'
     import { onMount } from 'svelte'
-    import "../app.postcss";
   
     export let data
   
