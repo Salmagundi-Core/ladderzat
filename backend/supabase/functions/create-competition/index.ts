@@ -3,18 +3,23 @@
 // This enables autocomplete, go to definition, etc.
 
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
-import {createClient} from "@supabase/supabase-js";
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 
 console.log("Hello from Functions!")
 
 serve(async (req) => {
   const { name } = await req.json()
-  const data = {
-    message: `Hello ${name}!`,
-  }
+
+  const supabase = createClient('http://localhost:54321', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0');
+
+  const { error } = await supabase
+      .from('competition')
+      .insert({name})
+
+  console.log(error.message);
 
   return new Response(
-      JSON.stringify('test'),
+      JSON.stringify(`${name} added!`),
       { headers: { "Content-Type": "application/json" } },
   )
 
