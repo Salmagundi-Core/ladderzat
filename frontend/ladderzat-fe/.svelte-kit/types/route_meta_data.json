@@ -1,0 +1,6 @@
+{
+	"/": [],
+	"/competitions/[slug]": [
+		"src/routes/competitions/[slug]/+page.server.ts"
+	]
+}
