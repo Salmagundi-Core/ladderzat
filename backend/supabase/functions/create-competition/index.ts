@@ -3,6 +3,7 @@
 // This enables autocomplete, go to definition, etc.
 
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
+import {createClient} from "@supabase/supabase-js";
 
 console.log("Hello from Functions!")
 
@@ -12,10 +13,13 @@ serve(async (req) => {
     message: `Hello ${name}!`,
   }
 
+  const supabase = createClient('test', 'test');
+
   return new Response(
-    JSON.stringify(data),
-    { headers: { "Content-Type": "application/json" } },
+      JSON.stringify('test'),
+      { headers: { "Content-Type": "application/json" } },
   )
+
 })
 
 // To invoke:
